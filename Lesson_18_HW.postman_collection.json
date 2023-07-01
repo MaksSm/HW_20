@@ -1,11 +1,4 @@
 {
-	"info": {
-		"_postman_id": "31ab98cc-1147-4462-82e9-355cacd679bc",
-		"name": "Lesson_18_HW",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26288325",
-		"_collection_link": "https://www.postman.com/spaceflight-participant-67886443/workspace/test-practice/collection/26288325-31ab98cc-1147-4462-82e9-355cacd679bc?action=share&creator=26288325&source=collection_link"
-	},
 	"item": [
 		{
 			"name": "sing in user",
