@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "a154af73-8298-453c-993e-6b237f14b91a",
+		"name": "Lesson_19_HW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26288325",
+		"_collection_link": "https://www.postman.com/spaceflight-participant-67886443/workspace/test-practice/collection/26288325-a154af73-8298-453c-993e-6b237f14b91a?action=share&creator=26288325&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "sign in user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"qwerty.qwerty@gmail.com\",\n  \"password\": \"Qwerty123\",\n  \"remember\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{my_url}}/auth/signin",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all cars models",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{my_url}}/cars/models",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"cars",
+						"models"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add car Ford Focus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"car_id\", jsonData.data.id);",
+							"",
+							"var moment = require ('moment');",
+							"pm.collectionVariables.set('tmp_current_date', moment(). format((\"YYYY-MM-DD\")));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"carBrandId\": 3,\n  \"carModelId\": 12,\n  \"mileage\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{my_url}}/cars",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add car Audi A6",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"carBrandId\": 1,\n  \"carModelId\": 4,\n  \"mileage\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{my_url}}/cars",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add expenses for Ford Focus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"expenses_id\", jsonData.data.id);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"carId\": {{car_id}},\n  \"reportedAt\": \"{{tmp_current_date}}\",\n  \"mileage\": 15,\n  \"liters\": 1,\n  \"totalCost\": 1,\n  \"forceMileage\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{my_url}}/expenses",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"expenses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update expenses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"carId\": {{car_id}},\n  \"reportedAt\": \"{{tmp_current_date}}\",\n  \"mileage\": 20,\n  \"liters\": 10,\n  \"totalCost\": 10,\n  \"forceMileage\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{my_url}}/expenses/{{expenses_id}}",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"expenses",
+						"{{expenses_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete expenses",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{my_url}}/expenses/{{expenses_id}}",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"expenses",
+						"{{expenses_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get expenses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{my_url}}/expenses/{{expenses_id}}",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"expenses",
+						"{{expenses_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete car Ford Focus",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://{{my_url}}/cars/{{car_id}}",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"cars",
+						"{{car_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get car Ford Focus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{my_url}}/cars/{{car_id}}",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"cars",
+						"{{car_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{my_url}}/auth/logout",
+					"protocol": "https",
+					"host": [
+						"{{my_url}}"
+					],
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "my_url",
+			"value": "qauto2.forstudy.space/api",
+			"type": "string"
+		},
+		{
+			"key": "car_id",
+			"value": ""
+		},
+		{
+			"key": "tmp_current_date",
+			"value": ""
+		},
+		{
+			"key": "expenses_id",
+			"value": ""
+		}
+	]
+}
